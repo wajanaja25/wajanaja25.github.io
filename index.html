@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uji Pemutaran Video</title>
+    <style>
+        #loading {
+            display: none;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uji Pemutaran Video</h1>
+    <p>Jika video di bawah ini dapat diputar dengan lancar, berarti browser Anda mendukung format yang diperlukan.</p>
+
+    <p id="loading">Video sedang loading...</p>
+    <video id="testVideo" width="640" controls>
+        <source src="test.mp4" type="video/mp4">
+        Browser Anda tidak mendukung pemutaran video HTML5.
+    </video>
+
+    <p id="result"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var video = document.getElementById("testVideo");
+            var loadingText = document.getElementById("loading");
+            var result = document.getElementById("result");
+
+            if (video.canPlayType("video/mp4")) {
+                result.textContent = "Browser Anda mendukung format MP4.";
+            } else {
+                result.textContent = "Browser Anda tidak mendukung format MP4.";
+            }
+
+            video.addEventListener("waiting", function () {
+                loadingText.style.display = "block";
+            });
+
+            video.addEventListener("playing", function () {
+                loadingText.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
