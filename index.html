@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uji Pemutaran Video</title>
     <style>
-        #loading {
+        .video-container {
+            margin-bottom: 20px;
+        }
+        .loading {
             display: none;
             color: red;
             font-weight: bold;
@@ -16,31 +19,81 @@
     <h1>Uji Pemutaran Video</h1>
     <p>Jika video di bawah ini dapat diputar dengan lancar, berarti browser Anda mendukung format yang diperlukan.</p>
 
-    <p id="loading">Video sedang loading...</p>
-    <video id="testVideo" width="640" controls>
-        <source src="test.mp4" type="video/mp4">
-        Browser Anda tidak mendukung pemutaran video HTML5.
-    </video>
+    <div id="videoList">
+        <!-- Video 1 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/h8xjk5.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
 
-    <p id="result"></p>
+        <!-- Video 2 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/td2n92.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/zc2e4u.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/vhzw6l.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
+
+        <!-- Video 5 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/8xmzqj.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
+
+        <!-- Video 6 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/4vi8g1.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
+
+        <!-- Video 7 -->
+        <div class="video-container">
+            <p class="loading">Video sedang loading...</p>
+            <video width="640" controls>
+                <source src="https://files.catbox.moe/g1jies.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video HTML5.
+            </video>
+        </div>
+    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var video = document.getElementById("testVideo");
-            var loadingText = document.getElementById("loading");
-            var result = document.getElementById("result");
+        document.querySelectorAll(".video-container").forEach(container => {
+            let video = container.querySelector("video");
+            let loadingText = container.querySelector(".loading");
 
-            if (video.canPlayType("video/mp4")) {
-                result.textContent = "Browser Anda mendukung format MP4.";
-            } else {
-                result.textContent = "Browser Anda tidak mendukung format MP4.";
-            }
-
-            video.addEventListener("waiting", function () {
+            video.addEventListener("waiting", () => {
                 loadingText.style.display = "block";
             });
 
-            video.addEventListener("playing", function () {
+            video.addEventListener("playing", () => {
                 loadingText.style.display = "none";
             });
         });
